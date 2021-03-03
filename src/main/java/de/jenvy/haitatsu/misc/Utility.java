@@ -1,7 +1,5 @@
 package de.jenvy.haitatsu.misc;
 
-import io.netty.channel.Channel;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -9,9 +7,7 @@ import java.util.stream.Collectors;
 
 public class Utility {
 
-    Utility() {
-        Channel channel = null;
-    }
+    Utility() { }
 
     public static final String DEFAULT_DELIMITER = "::";
 
