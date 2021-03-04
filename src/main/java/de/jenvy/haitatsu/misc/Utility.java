@@ -1,5 +1,7 @@
 package de.jenvy.haitatsu.misc;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -7,24 +9,29 @@ import java.util.stream.Collectors;
 
 public class Utility {
 
-    Utility() { }
-
     public static final String DEFAULT_DELIMITER = "::";
 
-    public static String listToString(List<?> list) {
+    Utility() {
+    }
+
+    @NotNull
+    public static String listToString(@NotNull List<?> list) {
         return listToString(list, DEFAULT_DELIMITER);
     }
 
-    public static String listToString(List<?> list, String delimiter) {
+    @NotNull
+    public static String listToString(@NotNull List<?> list, String delimiter) {
         return list.stream().map(Object::toString).collect(Collectors.joining(delimiter));
     }
 
-    public static List<String> stringToList(String compressed) {
+    @NotNull
+    public static List<String> stringToList(@NotNull String compressed) {
         return stringToList(compressed, DEFAULT_DELIMITER);
     }
 
-    public static List<String> stringToList(String compressed, String delimiter) {
-        List<String> list = new ArrayList<>();
+    @NotNull
+    public static List<String> stringToList(@NotNull String compressed, @NotNull String delimiter) {
+        var list = new ArrayList<String>();
         Collections.addAll(list, compressed.split(delimiter));
         return list;
     }

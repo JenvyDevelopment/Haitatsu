@@ -6,6 +6,7 @@ import de.jenvy.haitatsu.packet.AbstractHaitatsuByteBuf;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.MessageToByteEncoder;
+import org.jetbrains.annotations.NotNull;
 
 public class HaitatsuPacketEncoder extends MessageToByteEncoder<HaitatsuPacket> {
 
@@ -16,7 +17,7 @@ public class HaitatsuPacketEncoder extends MessageToByteEncoder<HaitatsuPacket> 
     }
 
     @Override
-    protected void encode(ChannelHandlerContext ctx, HaitatsuPacket msg, ByteBuf out) {
+    protected void encode(@NotNull ChannelHandlerContext ctx, @NotNull HaitatsuPacket msg, @NotNull ByteBuf out) {
         out.writeInt(this.packetFactory.getPacketId(msg));
         msg.set(new AbstractHaitatsuByteBuf(out));
     }

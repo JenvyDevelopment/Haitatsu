@@ -3,6 +3,7 @@ package de.jenvy.haitatsu.packet;
 import de.jenvy.haitatsu.api.packet.HaitatsuByteBuf;
 import de.jenvy.haitatsu.misc.Utility;
 import io.netty.buffer.ByteBuf;
+import org.jetbrains.annotations.NotNull;
 
 import java.nio.charset.StandardCharsets;
 import java.util.List;
@@ -11,39 +12,42 @@ public class AbstractHaitatsuByteBuf implements HaitatsuByteBuf {
 
     private final ByteBuf byteBuf;
 
-    public AbstractHaitatsuByteBuf(ByteBuf byteBuf) {
+    public AbstractHaitatsuByteBuf(@NotNull ByteBuf byteBuf) {
         this.byteBuf = byteBuf;
     }
 
     @Override
-    public void writeList(List<?> param) {
+    public void writeList(@NotNull List<?> param) {
         this.writeString(Utility.listToString(param));
     }
 
     @Override
-    public void writeList(List<?> param, String delimiter) {
+    public void writeList(@NotNull List<?> param, @NotNull String delimiter) {
         this.writeString(Utility.listToString(param, delimiter));
     }
 
     @Override
+    @NotNull
     public List<String> readList() {
         return Utility.stringToList(this.readString());
     }
 
     @Override
-    public List<String> readList(String delimiter) {
+    @NotNull
+    public List<String> readList(@NotNull String delimiter) {
         return Utility.stringToList(this.readString(), delimiter);
     }
 
     @Override
-    public void writeString(String param) {
-        if (param == null || param.isEmpty())
-            throw new NullPointerException();
+    public void writeString(@NotNull String param) {
+        if (param.isEmpty())
+            throw new IllegalArgumentException("Parameters are empty.");
         this.byteBuf.writeInt(param.length());
         this.byteBuf.writeBytes(param.getBytes());
     }
 
     @Override
+    @NotNull
     public String readString() {
         int length = this.byteBuf.readInt();
         byte[] bytes = new byte[length];
@@ -112,6 +116,7 @@ public class AbstractHaitatsuByteBuf implements HaitatsuByteBuf {
     }
 
     @Override
+    @NotNull
     public ByteBuf getByteBuf() {
         return this.byteBuf;
     }

@@ -2,6 +2,7 @@ package de.jenvy.haitatsu.server;
 
 import de.jenvy.haitatsu.api.packet.HaitatsuPacketFactory;
 import de.jenvy.haitatsu.api.server.HaitatsuServer;
+import org.jetbrains.annotations.Nullable;
 
 public class AbstractHaitatsuServer implements HaitatsuServer {
 
@@ -21,6 +22,7 @@ public class AbstractHaitatsuServer implements HaitatsuServer {
     }
 
     @Override
+    @Nullable
     public HaitatsuPacketFactory getPacketFactory() {
         return null;
     }
