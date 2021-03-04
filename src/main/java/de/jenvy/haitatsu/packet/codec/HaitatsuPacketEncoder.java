@@ -12,7 +12,7 @@ public class HaitatsuPacketEncoder extends MessageToByteEncoder<HaitatsuPacket> 
 
     private final HaitatsuPacketFactory packetFactory;
 
-    public HaitatsuPacketEncoder(HaitatsuPacketFactory packetFactory) {
+    public HaitatsuPacketEncoder(@NotNull HaitatsuPacketFactory packetFactory) {
         this.packetFactory = packetFactory;
     }
 
